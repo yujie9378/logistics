@@ -1,10 +1,12 @@
-package service
+package loginservice
 
 import (
-	"gorm.io/gorm"
 	_type "logistics/type"
 )
 
-type IService interface {
-	Register(db *gorm.DB, user *_type.User) error
+type ILogin interface {
+	Register(user *_type.User) error
+	SendVerifyCode(tel string) error
+	Verify(tel string, code string) error
+	CheckRegistered(tel string) (bool, error)
 }
